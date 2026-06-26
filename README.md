@@ -65,3 +65,10 @@ Install [Tampermonkey](https://www.tampermonkey.net/) → dashboard → **+ New*
 - A strict Content-Security-Policy can block the Blob download; both versions fall back to copying the CSV to your clipboard (and the console version leaves rows in `window.__aiSources`).
 - It captures the *displayed* source/activity layer, not the model's internal query fan-out — that isn't exposed in the DOM.
 - These interfaces change often. The detection is structure-based (repeating link rows + scroll), not class-name-based, precisely so it survives redesigns; if a future layout breaks it, the `rowOf` / `findContainers` heuristics at the top are where to adjust.
+
+## Full citation (APA 7, software)
+
+Omena, J. J. (2026). AI Source Scraper (Version 3) [in-browser scraper]. (https://github.com/jannajoceli/ai-source-scraper)
+
+
+
