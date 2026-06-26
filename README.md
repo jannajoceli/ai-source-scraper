@@ -1,12 +1,18 @@
-# AI Source Scraper (v3)
+# AI Source Scraper
 
 Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for longitudinal source-recurrence analysis (DMI26, *Agentic AI on the Web*).
 
-**What changed in v3.** Added a `clean_url` column — the `url` with tracking params (`?utm_source=chatgpt.com` and the click-ID family) stripped — alongside the raw `url`. Group and dedupe on `clean_url`; keep `url` for provenance. The strip list (`TRACKING_PARAMS`) is editable at the top of each file.
+## Repository contents
 
-**What changed in v2.** v1 only caught the inline citation chips in the message body (e.g. 12), not the full "Activity / Sources" panel (e.g. 135). That panel is **virtualized** — only ~8 cards exist in the page at once — so v2 (a) auto-detects the source list wherever it lives, not just `main`, and (b) **auto-scrolls it top-to-bottom**, harvesting and de-duping as cards mount, so it captures all of them. It also reads each card's real structure — hostname / **title** / **description** — instead of the surrounding paragraph.
+This repository includes:
 
-This mirrors how Instant Data Scraper works: heuristic detection of the largest repeating HTML structure on the page, plus scroll handling for lazily loaded content.
+- `README.md` — overview, purpose, usage, output schema and limitations.
+- `docs/QUICKSTART.md` — step-by-step instructions for running the scraper.
+- `ai-source-scraper-console.js` — no-install browser console version.
+- `ai-source-scraper.user.js` — Tampermonkey/Violentmonkey userscript for repeated captures.
+- `assets/` — logo and icon files.
+- `.gitignore` — ignores local exports and editor/OS clutter.
+- `REPOSITORY_NOTES.md` — suggested repository description, topics and setup notes.
 
 ## Two versions
 
