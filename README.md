@@ -68,7 +68,7 @@ Install [Tampermonkey](https://www.tampermonkey.net/) → dashboard → **+ New*
 
 ## Full citation (APA 7, software)
 
-Omena, J. J. (2026). AI Source Scraper (Version 3) [in-browser scraper]. (https://github.com/jannajoceli/ai-source-scraper)
+Omena, J. J. (2026). AI Source Scraper (Version 3) [in-browser scraper]. https://github.com/jannajoceli/ai-source-scraper
 
 
 
