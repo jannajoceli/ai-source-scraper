@@ -2,7 +2,7 @@
 
 # AI Source Scraper
 
-Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for longitudinal source-recurrence analysis (DMI26, *Agentic AI on the Web*).
+Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for longitudinal source-recurrence analysis (DMI26, *Agentic AI on the Web*). (YT video demo: https://youtu.be/RKFm4QOyR7E)
 
 ## Repository contents
 
