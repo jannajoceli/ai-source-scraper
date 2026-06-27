@@ -68,6 +68,9 @@ Install [Tampermonkey](https://www.tampermonkey.net/) → dashboard → **+ New*
 - It captures the *displayed* source/activity layer, not the model's internal query fan-out — that isn't exposed in the DOM.
 - These interfaces change often. The detection is structure-based (repeating link rows + scroll), not class-name-based, precisely so it survives redesigns; if a future layout breaks it, the `rowOf` / `findContainers` heuristics at the top are where to adjust.
 
+## Acknowledgment
+The code was developed with the assistance of Claude (Anthropic, 2026) through an iterative vibe-coding process.
+
 ## Full citation (APA 7, software)
 
 Omena, J. J. (2026). AI Source Scraper (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.20945556
