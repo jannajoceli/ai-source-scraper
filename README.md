@@ -4,6 +4,18 @@
 
 Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for longitudinal source-recurrence analysis (DMI26, *Agentic AI on the Web*). (YT video demo: https://youtu.be/RKFm4QOyR7E) **Use Google Chrome**
 
+## Install as a browser extension (no Tampermonkey)
+
+The scraper is also packaged as a standalone browser extension — same engine,
+same floating panel. Download from the [latest release](https://github.com/jannajoceli/ai-source-scraper/releases/latest).
+
+**Firefox** (`ai-source-scraper-firefox.xpi`)
+- Quick test: `about:debugging` → *This Firefox* → **Load Temporary Add-on** → select the `.xpi`. (Unloads when Firefox closes.)
+- Permanent: sign it for free at [addons.mozilla.org](https://addons.mozilla.org) → Developer Hub → *Submit a New Add-on* → **On your own** (self-distribution, stays private) → upload the `.xpi` → install the signed file Mozilla returns.
+
+**Chrome / Edge / Brave** (`ai-source-scraper-chrome.zip`)
+- Unzip → `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select the folder. Persists across restarts.
+
 ## Repository contents
 
 This repository includes:
