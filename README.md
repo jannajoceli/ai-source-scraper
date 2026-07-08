@@ -6,20 +6,11 @@ Capture every cited web source — with metadata — from the source/activity pa
 
 ## Install — browser extension (recommended)
 
-The scraper ships as a standalone browser extension: same engine, same floating panel, no third-party manager needed. Download both packages from the [latest release](https://github.com/jannajoceli/ai-source-scraper/releases/latest).
-
-**Chrome / Edge / Brave** (`ai-source-scraper-chrome.zip`)
-- Unzip → `chrome://extensions` → enable **Developer mode** (top right) → **Load unpacked** → select the unzipped folder. Persists across restarts.
-
-**Firefox** (`ai-source-scraper-firefox.xpi`)
-- Quick test: `about:debugging` → *This Firefox* → **Load Temporary Add-on** → select the `.xpi`. (Unloads when Firefox closes.)
-- Permanent: sign it for free at [addons.mozilla.org](https://addons.mozilla.org) → Developer Hub → *Submit a New Add-on* → **On your own** (self-distribution, stays private) → upload the `.xpi` → install the signed file Mozilla returns.
-
-Once installed, the panel appears bottom-right on claude.ai, gemini.google.com and chatgpt.com, with a *session label* field and a *buffer* that accumulates captures across a session before exporting them together.
+The scraper ships as a standalone browser extension: same engine, same floating panel, no third-party manager needed. Download both packages from the latest release. (Chrome Web Store and Firefox Add-ons listings are in review — one-click install links will be added here once approved.)
 
 ## No-install option — console version
 
-**`ai-source-scraper-console.js`** — paste into the browser DevTools console (F12 → Console). Zero install: it auto-scrolls the source panel, then downloads CSV + JSON for the current response. Handy for a one-off capture or on machines where you can't install extensions. See `docs/QUICKSTART.md` for the step-by-step (including Chrome's one-time `allow pasting` confirmation).
+**`ai-source-scraper-console.js`** — paste into the browser DevTools console (F12 → Console) or (Option, Command, J → Console). Zero install: it auto-scrolls the source panel, then downloads CSV + JSON for the current response. Handy for a one-off capture or on machines where you can't install extensions. See `docs/QUICKSTART.md` for the step-by-step (including Chrome's one-time `allow pasting` confirmation).
 
 ## Alternative — Tampermonkey userscript
 
