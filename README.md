@@ -1,59 +1,60 @@
 <img width="2400" height="1392" alt="ai-source-scraper-logo" src="https://github.com/user-attachments/assets/568232d0-b97e-41b9-8c2f-2e73b69dd1ad" />
 
+<img width="2400" height="1392" alt="ai-source-scraper-logo" src="https://github.com/user-attachments/assets/568232d0-b97e-41b9-8c2f-2e73b69dd1ad" />
+
 # AI Source Scraper
 
 Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for longitudinal source-recurrence analysis (DMI26, *Agentic AI on the Web*). (YT video demo: https://youtu.be/RKFm4QOyR7E) **Use Google Chrome**
 
-## Install as a browser extension (no Tampermonkey)
+## Install — browser extension (recommended)
 
-The scraper is also packaged as a standalone browser extension — same engine,
-same floating panel. Download from the [latest release](https://github.com/jannajoceli/ai-source-scraper/releases/latest).
+The scraper ships as a standalone browser extension: same engine, same floating panel, no third-party manager needed. Download both packages from the [latest release](https://github.com/jannajoceli/ai-source-scraper/releases/latest).
+
+**Chrome / Edge / Brave** (`ai-source-scraper-chrome.zip`)
+- Unzip → `chrome://extensions` → enable **Developer mode** (top right) → **Load unpacked** → select the unzipped folder. Persists across restarts.
 
 **Firefox** (`ai-source-scraper-firefox.xpi`)
 - Quick test: `about:debugging` → *This Firefox* → **Load Temporary Add-on** → select the `.xpi`. (Unloads when Firefox closes.)
 - Permanent: sign it for free at [addons.mozilla.org](https://addons.mozilla.org) → Developer Hub → *Submit a New Add-on* → **On your own** (self-distribution, stays private) → upload the `.xpi` → install the signed file Mozilla returns.
 
-**Chrome / Edge / Brave** (`ai-source-scraper-chrome.zip`)
-- Unzip → `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select the folder. Persists across restarts.
+Once installed, the panel appears bottom-right on claude.ai, gemini.google.com and chatgpt.com, with a *session label* field and a *buffer* that accumulates captures across a session before exporting them together.
 
-## Repository contents
+## No-install option — console version
 
-This repository includes:
+**`ai-source-scraper-console.js`** — paste into the browser DevTools console (F12 → Console). Zero install: it auto-scrolls the source panel, then downloads CSV + JSON for the current response. Handy for a one-off capture or on machines where you can't install extensions. See `docs/QUICKSTART.md` for the step-by-step (including Chrome's one-time `allow pasting` confirmation).
 
-- `README.md` — overview, purpose, usage, output schema and limitations.
-- `docs/QUICKSTART.md` — step-by-step instructions for running the scraper.
-- `ai-source-scraper-console.js` — no-install browser console version.
-- `ai-source-scraper.user.js` — Tampermonkey/Violentmonkey userscript for repeated captures.
-- `assets/` — logo and icon files.
-- `.gitignore` — ignores local exports and editor/OS clutter.
-- `REPOSITORY_NOTES.md` — suggested repository description, topics and setup notes.
+## Alternative — Tampermonkey userscript
 
-## Two versions
-
-- **`ai-source-scraper-console.js`** — paste into the browser console. Zero install. Auto-scrolls, then downloads CSV + JSON for the current response.
-- **`ai-source-scraper.user.js`** — Tampermonkey/Violentmonkey userscript. Floating panel with a *session label* field and a *buffer* that accumulates many captures across a session before exporting them together.
+**`ai-source-scraper.user.js`** — for those who already use [Tampermonkey](https://www.tampermonkey.net/) or Violentmonkey: dashboard → **+ New** → paste the file → save. Behaviour is identical to the extension (it's the same engine); the extension is simply the recommended route since it removes the dependency.
 
 ## Use it in 4 steps
 
 1. Open a Claude / Gemini / ChatGPT response that searched the web.
 2. **Open the Sources / Activity panel** so the list is on screen (it doesn't need to be scrolled — the tool does that).
-3. Run it — console paste, or click **Scan sources** in the userscript panel. It scrolls the panel for a few seconds; watch the count climb in the console / on the button. **Let it finish.**
+3. Run it — click **Scan sources** in the panel (extension/userscript), or paste the console version. It scrolls the panel for a few seconds; watch the count climb. **Let it finish.**
 4. Download CSV / JSON.
 
-## Install the userscript
+## Repository contents
 
-Install [Tampermonkey](https://www.tampermonkey.net/) → dashboard → **+ New** → paste `ai-source-scraper.user.js` → save. The panel appears bottom-right on the three sites.
+- `README.md` — overview, purpose, usage, output schema and limitations.
+- `docs/QUICKSTART.md` — step-by-step instructions for running the scraper.
+- `extension/` — browser extension source (`manifest.json`, `content.js`); packaged builds are attached to each [release](https://github.com/jannajoceli/ai-source-scraper/releases/latest).
+- `ai-source-scraper-console.js` — no-install browser console version.
+- `ai-source-scraper.user.js` — Tampermonkey/Violentmonkey userscript (alternative to the extension).
+- `assets/` — logo and icon files.
+- `.gitignore` — ignores local exports and editor/OS clutter.
+- `REPOSITORY_NOTES.md` — suggested repository description, topics and setup notes.
 
 ## Output schema
 
 | column | meaning |
 |---|---|
 | `rank` | order in the list (proxy for position/prominence) |
-| `capture_id` | one id per scan (userscript) — separates captures in one file |
+| `capture_id` | one id per scan (extension/userscript) — separates captures in one file |
 | `capture_timestamp` | ISO time of the scan |
 | `platform` | claude / gemini / chatgpt |
 | `page_url`, `page_title` | the conversation |
-| `session_label` | your free-text note, e.g. the prompt (userscript field) |
+| `session_label` | your free-text note, e.g. the prompt (extension/userscript field) |
 | `source_type` | `panel` (full activity list, has a description) vs `inline` (citation chip in the answer) |
 | `url` | full URL exactly as shown — keeps tracking params, for provenance |
 | `clean_url` | URL with `utm_*` and click-ID params (`fbclid`, `gclid`, …) stripped — **use this for grouping / recurrence** |
@@ -64,19 +65,19 @@ Install [Tampermonkey](https://www.tampermonkey.net/) → dashboard → **+ New*
 
 `source_type` lets you compare **what was cited in the answer (`inline`) against everything consulted (`panel`)** — a direct read on selectivity. De-duplication keeps the richer card when a source appears both inline and in the panel, and merges `utm_*` query variants of the same URL.
 
-## Console API (userscript)
+## Console API
 
-`window.aiSourceScraper` exposes `.scan()`, `.buffer`, `.csv()`, `.json()`, `.clear()`, `.setLabel(s)`.
+The extension and userscript expose `window.aiSourceScraper` with `.scan()`, `.buffer`, `.csv()`, `.json()`, `.clear()`, `.setLabel(s)` for driving captures from the console or chaining into other tooling.
 
 ## Tuning
 
-`denyHosts` at the top of each file is the only exclusion list — deliberately tight, so `google.com` / `openai.com` / `anthropic.com` citations are kept (only their account/settings/support subdomains drop). Add a host there if UI links sneak in; remove one if a real citation is being dropped.
+`denyHosts` at the top of each script is the only exclusion list — deliberately tight, so `google.com` / `openai.com` / `anthropic.com` citations are kept (only their account/settings/support subdomains drop). Add a host there if UI links sneak in; remove one if a real citation is being dropped. In the extension, edit `extension/content.js` and reload the extension.
 
 ## Honest limitations
 
 - It reads the rendered DOM, so the source panel must be **open**. If a scan returns 0, the panel almost certainly isn't open, or the list hadn't rendered yet.
 - Auto-scroll works for the lazy lists these products use, but on a very long list (hundreds) give it the full few seconds; the count stops climbing when it's done.
-- A strict Content-Security-Policy can block the Blob download; both versions fall back to copying the CSV to your clipboard (and the console version leaves rows in `window.__aiSources`).
+- A strict Content-Security-Policy can block the Blob download; all versions fall back to copying the CSV to your clipboard (and the console version leaves rows in `window.__aiSources`).
 - It captures the *displayed* source/activity layer, not the model's internal query fan-out — that isn't exposed in the DOM.
 - These interfaces change often. The detection is structure-based (repeating link rows + scroll), not class-name-based, precisely so it survives redesigns; if a future layout breaks it, the `rowOf` / `findContainers` heuristics at the top are where to adjust.
 
@@ -85,7 +86,6 @@ The code was developed with the assistance of Claude (Anthropic, 2026) through a
 
 ## Full citation (APA 7, software)
 
-Omena, J. J. (2026). AI Source Scraper (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.20945556
-
-
-
+Omena, J. J. (2026). AI Source Scraper (Version 1.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.20945556
+```
+</parameter>
