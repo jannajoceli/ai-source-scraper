@@ -1,7 +1,5 @@
 <img width="2400" height="1392" alt="ai-source-scraper-logo" src="https://github.com/user-attachments/assets/568232d0-b97e-41b9-8c2f-2e73b69dd1ad" />
 
-<img width="2400" height="1392" alt="ai-source-scraper-logo" src="https://github.com/user-attachments/assets/568232d0-b97e-41b9-8c2f-2e73b69dd1ad" />
-
 # AI Source Scraper
 
 Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for longitudinal source-recurrence analysis (DMI26, *Agentic AI on the Web*). (YT video demo: https://youtu.be/RKFm4QOyR7E) **Use Google Chrome**
