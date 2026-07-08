@@ -1,0 +1,52 @@
+PRIVACY POLICY — AI SOURCE SCRAPER
+
+Last updated: 8 July 2026
+Developer: Janna Joceli Omena
+Contact: [your email]
+Extension: AI Source Scraper (Chrome Web Store / Firefox Add-ons)
+Source code: https://github.com/jannajoceli/ai-source-scraper
+
+
+1. OVERVIEW
+
+AI Source Scraper is a browser extension for digital methods research. It captures the cited web source links — and their metadata (URL, domain, title, description, citation position) — displayed in the source/activity panels of AI chat interfaces (Claude, Gemini, ChatGPT), and exports them as CSV or JSON files to the user's own device.
+
+
+2. DATA COLLECTION: NONE
+
+AI Source Scraper does not collect, store, transmit, sell, or share any user data.
+
+Specifically, the extension:
+- Makes no network requests. All code ships inside the extension package; nothing is fetched from or sent to any server.
+- Has no analytics, telemetry, tracking, or crash reporting.
+- Uses no cookies and no persistent browser storage.
+- Does not read, record, or transmit the user's conversations, prompts, account information, or browsing history.
+
+The only information the extension processes is the list of publicly available web source links visibly displayed on the page the user is viewing. This processing happens entirely inside the user's browser, in memory, and only when the user clicks "Scan sources". The results exist solely as a temporary in-page buffer until the user exports them as a CSV/JSON file downloaded directly to the user's own device, or closes the page — at which point they are gone.
+
+
+3. PERMISSIONS
+
+The extension runs only on the following sites, and nowhere else:
+- claude.ai
+- gemini.google.com
+- chatgpt.com
+- chat.openai.com
+
+This host permission exists solely so the extension can read the source links displayed on those pages and offer them to the user as a download. The extension accesses no other websites and requests no other browser permissions.
+
+
+4. THIRD PARTIES
+
+No data is transferred to third parties, because no data leaves the user's browser. The developer never receives any information about users, their usage, or their captures.
+
+
+5. CHANGES TO THIS POLICY
+
+If a future version of the extension ever changes these practices (for example, an optional feature to share captures with a research database), this policy will be updated first, the extension's store listing and data-usage declarations will be revised accordingly, and the change will be announced in the release notes on GitHub. 
+
+
+6. CONTACT
+
+Questions about this policy or the extension: [your email], or open an issue at https://github.com/jannajoceli/ai-source-scraper/issues
+
