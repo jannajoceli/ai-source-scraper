@@ -10,7 +10,48 @@ The scraper ships as a standalone browser extension: same engine, same floating 
 
 ## No-install option — console version
 
-**`ai-source-scraper-console.js`** — paste into the browser DevTools console (F12 → Console) or (Option, Command, J → Console). Zero install: it auto-scrolls the source panel, then downloads CSV + JSON for the current response. Handy for a one-off capture or on machines where you can't install extensions. See `docs/QUICKSTART.md` for the step-by-step (including Chrome's one-time `allow pasting` confirmation).
+Two console builds, no install required. Paste into the browser DevTools console
+(F12 → Console, or on Mac **Option+Cmd+J**); Chrome asks you to type `allow pasting`
+once.
+
+**`ai-source-scraper-console.js`** — one-shot. Auto-scrolls the source panel, then
+downloads CSV + JSON for the current response. Best for a quick, single capture.
+
+**`ai-source-scraper-console-buffered.js`** — longitudinal build (v1.2). Paste **once**,
+then capture as many prompts as you like in one thread; every scan appends to a buffer,
+and you download a single merged CSV/JSON at the end. Ideal for prompting the same thread
+over time. The buffer is saved to `localStorage`, so an accidental reload doesn't lose the
+round.
+
+```js
+// paste the buffered script once, then per prompt (Sources panel open):
+aiSourceScraper.scan('medium_p0_warm')      // label = file_id
+aiSourceScraper.scan('medium_m1_warm')      // appends; repeat per prompt
+// end of thread:
+aiSourceScraper.csv(); aiSourceScraper.json(); aiSourceScraper.clear()
+```
+
+The label you pass is stored as `file_id` and, when it follows
+`{topic}_{prompt_id}_{thread_state}` (e.g. `medium_m1_warm`), is auto-split into the
+`topic`, `prompt_id`, and `thread_state` columns. Date and platform are captured
+automatically, so you don't type them. A second argument becomes a free-text `note`:
+`aiSourceScraper.scan('politics-en_m2_warm', 'panel slow to load')`.
+
+---
+
+## Output schema — additional columns (buffered console build, v1.2)
+
+| column | meaning |
+|---|---|
+| `file_id` | the label passed to the scan — your join key across CSV, chat export, screenshot, and notes |
+| `topic` | auto-split from `file_id` |
+| `prompt_id` | auto-split from `file_id` (e.g. `p0`, `m1`…) |
+| `thread_state` | auto-split from `file_id` (`warm` / `cold`) |
+| `capture_date` | date of the scan (from `capture_timestamp`) |
+| `note` | optional free-text observation (2nd argument to `scan`) |
+
+These are additive: rows from the extension/userscript simply leave them blank, so all
+outputs merge cleanly.
 
 ## Alternative — Tampermonkey userscript
 
