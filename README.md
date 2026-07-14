@@ -1,4 +1,4 @@
-<img width="2400" height="1392" alt="ai-source-scraper-logo" src="https://github.com/user-attachments/assets/568232d0-b97e-41b9-8c2f-2e73b69dd1ad" />
+<img width="2400" height="1392" alt="ai-source-scraper-logo_new" src="https://github.com/user-attachments/assets/d7092c60-0a9e-48a9-945b-3478a588aaf1" />
 
 # AI Source Scraper
 
