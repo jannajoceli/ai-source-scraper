@@ -120,4 +120,3 @@ The code was developed with the assistance of Claude (Anthropic, 2026) through a
 
 Omena, J. J. (2026). AI Source Scraper (Version 1.2.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.20945556
 ```
-</parameter>
