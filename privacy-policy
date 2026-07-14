@@ -19,7 +19,7 @@ AI Source Scraper does not collect, store, transmit, sell, or share any user dat
 Specifically, the extension:
 - Makes no network requests. All code ships inside the extension package; nothing is fetched from or sent to any server.
 - Has no analytics, telemetry, tracking, or crash reporting.
-- Uses no cookies and no persistent browser storage.
+- Uses no cookie. The session buffer and fieldwork observations are stored locally in the user's own browser (page localStorage) so an accidental reload does not destroy a research session; this data never leaves the user's device and is removed when the user clears the buffer or their browser storage.
 - Does not read, record, or transmit the user's conversations, prompts, account information, or browsing history.
 
 The only information the extension processes is the list of publicly available web source links visibly displayed on the page the user is viewing. This processing happens entirely inside the user's browser, in memory, and only when the user clicks "Scan sources". The results exist solely as a temporary in-page buffer until the user exports them as a CSV/JSON file downloaded directly to the user's own device, or closes the page — at which point they are gone.
