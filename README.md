@@ -8,6 +8,8 @@ Capture every cited web source — with metadata — from the source/activity pa
 
 The scraper ships as a standalone browser extension: same engine, same floating panel, no third-party manager needed. Download both packages from the latest release. (Chrome Web Store and Firefox Add-ons listings are in review — one-click install links will be added here once approved.)
 
+Thanks to Bernhard Rieder for the packaging suggestion 🦊
+
 ## No-install option — console version
 
 Two console builds, no install required. Paste into the browser DevTools console
