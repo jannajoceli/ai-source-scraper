@@ -7,23 +7,45 @@ Each capture can therefore be read as both a source collection event and a docum
 ## Visual schema
 
 ```mermaid
-flowchart TD
-    A[Capture mode] --> L[Longitudinal]
-    A --> C[Comparative]
-    L --> P[Prompt condition<br/>Isolated · Initial · Follow-up]
-    C --> P
-    P --> S[Search condition<br/>AI search · Agentic AI search]
-    S --> F[Prompt framing<br/>Underspecified · Program · Anti-program · Ambiguous]
-    F --> N[AI fieldwork observations]
-    N --> D[Structured session data<br/>CSV · JSON · TXT]
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+    "fontSize": "12px",
+    "lineColor": "#7563F6"
+  }
+}}%%
+
+flowchart TB
+    A["Capture mode"]:::capture
+
+    A --> L["Longitudinal"]:::mode
+    A --> C["Comparative"]:::mode
+
+    L --> LP["Prompt condition<br/>Isolated · Initial · Follow-up"]:::variable
+    C --> CF["Prompt framing<br/>Underspecified · Program · Anti-program · Ambiguous"]:::variable
+
+    LP --> S["Search condition<br/>AI search · Agentic AI search"]:::shared
+    CF --> S
+
+    S --> N["AI fieldwork observations"]:::observation
+    N --> D["Structured session data<br/>CSV · JSON · TXT"]:::data
+
+    classDef capture fill:#7040F4,stroke:#5935D6,color:#FFFFFF,font-size:13px,font-weight:500;
+    classDef mode fill:#30275B,stroke:#6C5CFF,color:#F7F5FF,font-size:12px,font-weight:400;
+    classDef variable fill:#211A48,stroke:#6657F5,color:#F5F2FF,font-size:12px,font-weight:400;
+    classDef shared fill:#E9E3FF,stroke:#765FFF,color:#2B2251,font-size:12px,font-weight:400;
+    classDef observation fill:#F5F2FF,stroke:#B3A5F6,color:#392F60,font-size:12px,font-weight:400;
+    classDef data fill:#EEE9FF,stroke:#6C5CF5,color:#2B2251,font-size:12px,font-weight:400;
+
+    linkStyle default stroke:#7867F3,stroke-width:1.5px;
 ```
 
-The schema separates four methodological fields recorded per capture:
+The schema foregrounds the primary methodological distinction between the two research designs:
 
-1. **Capture mode**: which research design the capture belongs to
-2. **Prompt condition**: where the prompt sits conversationally
-3. **Search condition**: under what technical AI search condition the response was generated
-4. **Prompt framing**: how the prompt is positioned epistemically
+1. **Longitudinal** captures are organised through **Prompt condition**: Isolated, Initial, or Follow-up.
+2. **Comparative** captures are organised through **Prompt framing**: Underspecified, Program, Anti-program, or Ambiguous.
+3. **Search condition** is shared across both designs: AI search or Agentic AI search.
 
 **AI fieldwork observations** are an optional annotation field that lets the researcher record what was noticed during data collection.
 
