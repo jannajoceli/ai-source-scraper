@@ -73,15 +73,38 @@ For the current extension workflow, see the **[Quick Start](docs/QUICKSTART.md)*
 AI Source Scraper supports **longitudinal** and **comparative** research designs while recording the methodological conditions of each capture.
 
 ```mermaid
-flowchart LR
-    A[Capture mode] --> L[Longitudinal]
-    A --> C[Comparative]
-    L --> P[Prompt condition]
-    C --> P
-    P --> S[Search condition]
-    S --> F[Prompt framing]
-    F --> O[AI fieldwork observations]
-    O --> D[Structured dataset]
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+    "fontSize": "12px",
+    "lineColor": "#7563F6"
+  }
+}}%%
+
+flowchart TB
+    A["Capture mode"]:::capture
+
+    A --> L["Longitudinal"]:::mode
+    A --> C["Comparative"]:::mode
+
+    L --> LP["Prompt condition<br/>Isolated · Initial · Follow-up"]:::variable
+    C --> CF["Prompt framing<br/>Underspecified · Program · Anti-program · Ambiguous"]:::variable
+
+    LP --> S["Search condition<br/>AI search · Agentic AI search"]:::shared
+    CF --> S
+
+    S --> N["AI fieldwork observations"]:::observation
+    N --> D["Structured session data<br/>CSV · JSON · TXT"]:::data
+
+    classDef capture fill:#7040F4,stroke:#5935D6,color:#FFFFFF,font-size:13px,font-weight:500;
+    classDef mode fill:#30275B,stroke:#6C5CFF,color:#F7F5FF,font-size:12px,font-weight:400;
+    classDef variable fill:#211A48,stroke:#6657F5,color:#F5F2FF,font-size:12px,font-weight:400;
+    classDef shared fill:#E9E3FF,stroke:#765FFF,color:#2B2251,font-size:12px,font-weight:400;
+    classDef observation fill:#F5F2FF,stroke:#B3A5F6,color:#392F60,font-size:12px,font-weight:400;
+    classDef data fill:#EEE9FF,stroke:#6C5CF5,color:#2B2251,font-size:12px,font-weight:400;
+
+    linkStyle default stroke:#7867F3,stroke-width:1.5px;
 ```
 
 **Longitudinal** captures ask how responses, sources, or interfaces change over time or across conversational sequences.
