@@ -66,10 +66,39 @@ outputs merge cleanly.
 3. Run it — click **Scan sources** in the panel (extension/userscript), or paste the console version. It scrolls the panel for a few seconds; watch the count climb. **Let it finish.**
 4. Download CSV / JSON.
 
+For the current extension workflow, see the **[Quick Start](docs/QUICKSTART.md)**.
+
+## Research designs
+
+AI Source Scraper supports **longitudinal** and **comparative** research designs while recording the methodological conditions of each capture.
+
+```mermaid
+flowchart LR
+    A[Capture mode] --> L[Longitudinal]
+    A --> C[Comparative]
+    L --> P[Prompt condition]
+    C --> P
+    P --> S[Search condition]
+    S --> F[Prompt framing]
+    F --> O[AI fieldwork observations]
+    O --> D[Structured dataset]
+```
+
+**Longitudinal** captures ask how responses, sources, or interfaces change over time or across conversational sequences.
+
+**Comparative** captures ask how outputs differ across deliberately varied research conditions.
+
+> **Prompt condition**: Where does the prompt sit conversationally?  
+> **Search condition**: Under what technical search condition was it run?  
+> **Prompt framing**: How is the prompt epistemically positioned?
+
+📖 **[Read the Research Design & Codebook](docs/RESEARCH-DESIGN.md)**
+
 ## Repository contents
 
 - `README.md` — overview, purpose, usage, output schema and limitations.
 - `docs/QUICKSTART.md` — step-by-step instructions for running the scraper.
+- `docs/RESEARCH-DESIGN.md` — research designs, methodological variables, prompt-framing examples and codebook values.
 - `extension/` — browser extension source (`manifest.json`, `content.js`); packaged builds are attached to each [release](https://github.com/jannajoceli/ai-source-scraper/releases/latest).
 - `ai-source-scraper-console.js` — no-install browser console version.
 - `ai-source-scraper.user.js` — Tampermonkey/Violentmonkey userscript (alternative to the extension).
