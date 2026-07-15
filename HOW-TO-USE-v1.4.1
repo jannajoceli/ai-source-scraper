@@ -1,0 +1,176 @@
+# How to use AI Source Scraper (v1.4.1)
+
+A step-by-step guide for capturing cited web sources from Claude, Gemini,
+and ChatGPT. There are two ways to run the tool — the **browser extension /
+userscript** (a panel with buttons) and the **console-buffered build** (a
+script you paste into the browser console). Both produce the same data.
+
+> **Before you start — login note.** ChatGPT and Gemini work while logged
+> out (usage limits may apply). Claude.ai requires an account for any
+> conversation, so captures from Claude are always from a logged-in
+> session. This matters only if your design compares logged-in vs
+> logged-out behaviour.
+
+---
+
+## A. Choose your research design first
+
+The tool records two research designs, set with the **Capture mode** toggle.
+Pick the one that matches your question:
+
+- **Longitudinal** — you are tracking the *same* prompt over time or across
+  a conversational sequence (does the answer, or its sources, drift?).
+- **Comparative** — you are comparing *different* prompts or conditions at
+  one point in time (does source selection change with framing or search
+  mode?).
+
+The mode you choose decides which metadata field you fill in:
+
+| Capture mode | Field shown | Also shown |
+|---|---|---|
+| **Longitudinal** | **Prompt condition** — Isolated / Initial / Follow-up | Search condition |
+| **Comparative** | **Prompt framing** — Underspecified / Program / Anti-program / Ambiguous | Search condition |
+
+---
+
+## B. Using the browser extension (or userscript)
+
+**Step 1 — Open a source-bearing response.**
+On Claude, Gemini, or ChatGPT, send a prompt that triggers web search, and
+open the response's **sources / activity panel** so the cited links are
+visible on screen.
+
+**Step 2 — Open the AI Source Scraper panel.**
+It appears as a floating panel at the bottom-right of the page. (If you
+installed the userscript, it appears the same way.)
+
+**Step 3 — Set the Capture mode.**
+Toggle **Longitudinal** (default) or **Comparative** at the top of the
+panel. The field below (Prompt condition or Prompt framing) changes to match.
+
+**Step 4 — Fill in the fields.**
+- **Session label** — a short code for this capture, e.g. `medium_p0_cold`.
+  Convention: `{topic}_{prompt_id}_{thread_state}` (see "Naming your
+  captures").
+- **Prompt condition** *(Longitudinal)* or **Prompt framing**
+  *(Comparative)* — pick the option describing this capture.
+- **Search condition** — AI search or Agentic AI search.
+- **AI fieldwork observations** *(optional)* — jot down anything you notice
+  (anomalies, response structure, context). These travel with your data.
+
+**Step 5 — Scan.**
+Click **Scan and add to session**. The tool scrolls the source panel,
+collects every cited link with its metadata, de-duplicates, and adds the
+rows to the current session buffer. The summary shows how many sources this
+capture found and the running buffer total.
+
+**Step 6 — Repeat for each capture.**
+Send the next prompt (or open the next condition), adjust the fields if
+needed, and click **Scan and add to session** again. Captures accumulate.
+The buffer survives an accidental page reload.
+
+**Step 7 — Download.**
+Open **Download files separately** to reveal:
+- **Download all (CSV + JSON + TXT)** — one click, all three files.
+- **CSV**, **JSON**, **TXT** — individual files.
+
+The `.txt` is your fieldwork-observations companion, with a citation block
+and a session header. All three files share one filename stamp so they stay
+matched.
+
+**Step 8 — Start a fresh session** when you're done: **clear buffer**
+(it warns you first if you have unsaved observations).
+
+---
+
+## C. Using the console-buffered build
+
+For when you prefer no panel, or want to script captures. Same data, same
+schema.
+
+**Step 1 — Open the browser console.**
+On the AI platform's page, open DevTools → Console (macOS: ⌥⌘J, Windows/
+Linux: Ctrl+Shift+J). Paste the entire contents of
+`ai-source-scraper-console-buffered.js` once and press Enter. Nothing
+downloads yet — it installs a small `grab` API.
+
+**Step 2 — Set your research design and variables** (all optional; sensible
+defaults apply):
+
+```js
+grab.mode('comparative')            // 'longitudinal' (default) | 'comparative'
+grab.search('agentic_ai_search')    // 'ai_search' | 'agentic_ai_search'
+grab.framing('program')             // Comparative: underspecified|program|anti_program|ambiguous
+grab.promptCondition('initial')     // Longitudinal: isolated|initial|follow_up ('' = infer from label)
+grab.notes('Observations for this session…')
+```
+
+In **comparative** mode `prompt_condition` is left blank automatically; in
+**longitudinal** mode `prompt_framing` is left blank — matching the panel.
+
+**Step 3 — Open a response's source panel, then scan:**
+
+```js
+grab('medium_p0_cold')              // the string is your session label / file_id
+grab('medium_p0_cold', 'panel slow to load')   // optional per-scan note
+```
+
+Each `grab(...)` appends to the buffer. Repeat after each prompt.
+
+**Step 4 — Check progress anytime:**
+
+```js
+grab.status()     // buffer summary: rows, captures, domains, current mode
+```
+
+**Step 5 — Download:**
+
+```js
+grab.all()        // CSV + JSON + TXT (one filename stamp)
+grab.csv()        // or individually
+grab.json()
+grab.txt()
+```
+
+**Step 6 — Start fresh:**
+
+```js
+grab.clear()      // empties the buffer and observations
+```
+
+---
+
+## Naming your captures
+
+Session labels follow `{topic}_{prompt_id}_{thread_state}` and auto-split
+into `topic`, `prompt_id`, `thread_state` columns in the data.
+
+| segment | pattern | example |
+|---|---|---|
+| `topic` | any text | `medium`, `elections` |
+| `prompt_id` | `p0` or `m1`, `m2`… | `p0`, `m1` |
+| `thread_state` | `cold` / `warm` | appended automatically in Longitudinal mode from Prompt condition (isolated/initial → cold, follow-up → warm) |
+
+Examples: `medium_p0_cold` · `medium_p0_warm` ·
+`elections_case01` (Comparative — no cold/warm needed).
+
+---
+
+## What you get in the data
+
+Each row is one cited source, with columns including: `rank`, `capture_id`,
+`capture_date`, `platform`, `capture_mode`, `prompt_condition`,
+`search_condition`, `prompt_framing`, `session_label`, `note`, `url`,
+`clean_url`, `redirect_url`, `hostname`, `domain`, `title`, `description`.
+`prompt_condition` is filled only in longitudinal rows and `prompt_framing`
+only in comparative rows — the empty column marks the other design.
+
+---
+
+## Citing the tool
+
+> Omena, J. J. (2026). *AI Source Scraper* [Computer software]. Zenodo.
+> https://doi.org/10.5281/zenodo.20945556
+
+The tool never sends data anywhere: all scanning happens in your browser,
+and files are saved locally by you. It makes zero network requests.
