@@ -8,9 +8,9 @@ Capture every cited web source — with metadata — from the source/activity pa
 
 The scraper ships as a standalone browser extension: same engine, same floating panel, no third-party manager needed. Download both packages from the latest release. (Chrome Web Store listings are in review — one-click install links will be added here once approved.)
 
-(Firefox Add-ons)[https://addons.mozilla.org/en-US/firefox/addon/ai-source-scraper/] 
+**[Firefox Add-ons here](https://addons.mozilla.org/en-US/firefox/addon/ai-source-scraper/)** 
 
-See **(Research Design & Codebook in docs/RESEARCH-DESIGN.md)[https://github.com/jannajoceli/ai-source-scraper/blob/main/docs/RESEARCH-DESIGN.md]
+See [Research Design & Codebook in docs/RESEARCH-DESIGN.md](https://github.com/jannajoceli/ai-source-scraper/blob/main/docs/RESEARCH-DESIGN.md)
 
 Thanks to Bernhard Rieder for the packaging suggestion 🦊
 
