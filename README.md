@@ -20,6 +20,8 @@ Two console builds, no install required. Paste into the browser DevTools console
 (F12 → Console, or on Mac **Option+Cmd+J**); Chrome asks you to type `allow pasting`
 once.
 
+See [HOW-TO-USE-v1.4.1](https://github.com/jannajoceli/ai-source-scraper/blob/main/HOW-TO-USE-v1.4.1)
+
 **`ai-source-scraper-console.js`** — one-shot. Auto-scrolls the source panel, then
 downloads CSV + JSON for the current response. Best for a quick, single capture.
 
