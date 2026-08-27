@@ -4,6 +4,13 @@
 
 Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for longitudinal source-recurrence analysis (DMI26, *Agentic AI on the Web*). (YT video demo: https://youtu.be/RKFm4QOyR7E) **Use Google Chrome**
 
+## Funded research support
+
+AI Source Scraper is supported by the [Digital Methods Network: Co-developing Research Tools through Technical Imagination and Engineering](https://discourse-network.github.io/projects/1-46-digital-methods/), a UKRI/DisCouRSE-funded project. The tool contributes methodological and technical groundwork for **AIsearchTracer**, one of the research-tool cases developed through the project.
+
+**Funding acknowledgement:**  
+This project has received funding through the UKRI Digital Research Infrastructure Programme via the DisCouRSE Network.
+
 ## Install — browser extension (recommended)
 
 The scraper ships as a standalone browser extension: same engine, same floating panel, no third-party manager needed. Download both packages from the latest release. 
