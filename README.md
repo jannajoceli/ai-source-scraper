@@ -2,7 +2,7 @@
 
 # AI Source Scraper
 
-Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for for [longitudinal](https://www.researchgate.net/publication/408580170_Longitudinal_Prompt_Method_for_Understanding_AI_Search) and [comparative](https://www.digitalmethods.net/Dmi/SummerSchool2026AIsourceVernaculars#A_4._Methodology)source-recurrence analysis.
+Capture every cited web source — with metadata — from the source/activity panels of **Claude, Gemini, and ChatGPT**, for for [longitudinal](https://www.researchgate.net/publication/408580170_Longitudinal_Prompt_Method_for_Understanding_AI_Search) and [comparative](https://www.digitalmethods.net/Dmi/SummerSchool2026AIsourceVernaculars#A_4._Methodology) source-recurrence analysis.
 
 ## Funded research support
 
