@@ -41,7 +41,7 @@ over time. The buffer is saved to `localStorage`, so an accidental reload doesn'
 round.
 
 ```js
-// paste the buffered script once, then per prompt (Sources panel open):
+// paste the buffered script once, then per prompt:
 aiSourceScraper.scan('medium_p0_warm')      // label = file_id
 aiSourceScraper.scan('medium_m1_warm')      // appends; repeat per prompt
 // end of thread:
@@ -77,8 +77,8 @@ outputs merge cleanly.
 ## Use it in 4 steps
 
 1. Open a Claude / Gemini / ChatGPT response that searched the web.
-2. **Open the Sources / Activity panel** so the list is on screen (it doesn't need to be scrolled — the tool does that).
-3. Run it — click **Scan sources** in the panel (extension/userscript), or paste the console version. It scrolls the panel for a few seconds; watch the count climb. **Let it finish.**
+2. Run it — click **Scan sources** in the scraper panel (extension/userscript), or paste the console version. You do **not** need to open the platform's Sources / Activity panel first.
+3. Give the scan a little time to finish; the source count may continue climbing while the scraper discovers and loads sources.
 4. Download CSV / JSON.
 
 For the current extension workflow, see the **[Quick Start](docs/QUICKSTART.md)**.
@@ -174,8 +174,8 @@ The extension and userscript expose `window.aiSourceScraper` with `.scan()`, `.b
 
 ## Honest limitations
 
-- It reads the rendered DOM, so the source panel must be **open**. If a scan returns 0, the panel almost certainly isn't open, or the list hadn't rendered yet.
-- Auto-scroll works for the lazy lists these products use, but on a very long list (hundreds) give it the full few seconds; the count stops climbing when it's done.
+- It reads the rendered page DOM and can discover sources without you opening the Sources / Activity panel first. If a scan returns 0, the source list may not have rendered yet, or the platform's interface may have changed.
+- Scanning can take a little while because the scraper may need to discover and load lazy source lists. On very long lists (hundreds), let the scan finish; the count stops climbing when it's done.
 - A strict Content-Security-Policy can block the Blob download; all versions fall back to copying the CSV to your clipboard (and the console version leaves rows in `window.__aiSources`).
 - It captures the *displayed* source/activity layer, not the model's internal query fan-out — that isn't exposed in the DOM.
 - These interfaces change often. The detection is structure-based (repeating link rows + scroll), not class-name-based, precisely so it survives redesigns; if a future layout breaks it, the `rowOf` / `findContainers` heuristics at the top are where to adjust.

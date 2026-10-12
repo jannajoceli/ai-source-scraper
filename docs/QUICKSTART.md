@@ -6,7 +6,7 @@ This guide is for the browser-extension workflow in v1.3.1. AI Source Scraper ca
 
 Open a response on a supported AI platform that has searched the web.
 
-Then open the platform's **Sources** or **Activity** panel so the source list is visible. The panel does not need to be manually scrolled. AI Source Scraper handles the scrolling during the scan.
+You do **not** need to open the platform's **Sources** or **Activity** panel first. AI Source Scraper discovers the available sources from the page and handles any loading or scrolling needed during the scan.
 
 ## 2. Set the capture metadata
 
@@ -25,7 +25,9 @@ The same metadata fields are available in both capture modes.
 
 Click **Scan and add to session**.
 
-The scraper scrolls through the open source/activity panel, collects the displayed sources, and appends the capture to the current session buffer.
+The scraper discovers the available sources, loads them as needed, and appends the capture to the current session buffer.
+
+The scan can take a little while to finish, especially when there are many sources. Let the source count settle before starting another capture.
 
 Repeat this process for each prompt or research condition you want to include in the session.
 
@@ -76,8 +78,8 @@ This means a logged-in versus logged-out comparison is only possible on platform
 
 ## Troubleshooting
 
-- **The scan returns 0 sources:** make sure the Sources/Activity panel is open and has finished rendering.
-- **The source count is still climbing:** let the auto-scroll finish before starting another capture.
+- **The scan returns 0 sources:** wait for the response and its source data to finish rendering, then try again. You do not need to open the Sources/Activity panel first.
+- **The source count is still climbing:** let the scan finish before starting another capture.
 - **A download is blocked by the page:** strict Content-Security-Policy settings can interfere with Blob downloads; the scraper includes fallback behaviour where supported.
 - **The interface changed:** AI platforms redesign their source panels frequently. Report breakage in the GitHub repository so the detection heuristics can be updated.
 
